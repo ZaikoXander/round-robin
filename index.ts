@@ -44,7 +44,9 @@ function roundRobin(processos: IProcesso[], quantum: number): RoundRobinReturn {
     somaPeriodos += periodo
   });
 
-  const tempoEsperaMedio = somaPeriodos / (periodos.length - 1)
+  const quantidadeTempoEsperaPeriodos = periodos.length - 1
+
+  const tempoEsperaMedio = somaPeriodos / quantidadeTempoEsperaPeriodos
 
   return {
     resultado,
@@ -95,8 +97,8 @@ const quantum = Number(quantumStr)
 
 const rr = roundRobin(processos, quantum)
 
-const ids = rr.resultado.map(res => `P${res.id}`)
+const idsFormatados = rr.resultado.map(res => `P${res.id}`)
 
-console.log(`Resultado final: ${ids.join(", ")}`)
+console.log(`Resultado final: ${idsFormatados.join(", ")}`)
 console.log(`Períodos: ${rr.periodos.join(", ")}`)
 console.log(`Tempo de espera médio: ${rr.tempoEsperaMedio}`)
